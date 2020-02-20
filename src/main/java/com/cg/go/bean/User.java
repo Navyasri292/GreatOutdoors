@@ -14,7 +14,8 @@ public User(String userName, String passWord, String email, String phoneNum) {
 	this.email = email;
 	this.phoneNum = phoneNum;
 }
-public User() {
+public User() 
+{
 	super();
 }
 public String getUserName() {
