@@ -31,19 +31,20 @@ public class Client {
 				try
 				{
 		        System.out.print("Enter the user name");
-		        
 		        scr.nextLine();
 		        String username=scr.nextLine();
 		        System.out.print("Enter the password");
 		        String password=scr.nextLine();
-		        System.out.print("Enter the email id ");
+		        System.out.print("Confirm password");
+		        String reenterpassword=scr.nextLine();
+		        System.out.print("Enter the emailid");
 		        String emailid=scr.nextLine();
 		        System.out.print("Enter the phonenumber");
 		        String phonenumber=scr.nextLine();
 		        user = new User();
 		        user.setUserName(username);
-		       
 		        user.setPassWord(password);
+		        user.setReenterPassword(reenterpassword);
 		        user.setEmail(emailid);
 		        user.setPhoneNum(phonenumber);
 		        userService.register(user);

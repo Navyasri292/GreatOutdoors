@@ -1,6 +1,7 @@
 package com.cg.go.dao;
 
 import java.util.ArrayList;
+
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -23,13 +24,19 @@ public class UserDaoMapImpl implements UserDao
 
 	if(!map.containsKey(user.getUserName()))
 	{
+		if(user.getPassWord()!=user.getReenterPassword())
+			{
+		   	throw new UserException("Password not matched");
+			}
+
 		map.put(user.getUserName(), user);
 		
 	}
-	else {
-		throw new UserException(" Id already exists");
-	}
 
+	
+		throw new UserException(" Id already exists");
+	
+	
 	}
 	@Override
 	public boolean login(String str1, String str2) throws UserException 

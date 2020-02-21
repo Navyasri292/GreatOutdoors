@@ -33,6 +33,14 @@ public class UserServiceImpl implements UserService
 	}
 
 	@Override
+  public boolean validateReenterPassword(String reenterPassword) 
+	{
+     boolean flag=reenterPassword.matches("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,15})");
+		
+		return flag;
+	}	
+    
+	@Override
 	public boolean validateEMail(String eMail) {
 		//boolean flag=false;
 		boolean flag=eMail.matches("^([1-zA-Z0-1@.\\s]{1,255})$");//"[a-zA-Z0-9]+(_a-zA-Z0-9+)*@[A-Za-z0-9+)*(.[A-Za-z])");
@@ -51,14 +59,12 @@ public class UserServiceImpl implements UserService
 	{
 		String userName=user.getUserName();
 		boolean flag1=validateUserName(userName);
-		
-		
 		if(!flag1)
 		{
 			throw new UserException("User name should contain alphabets and numbers");
 		}
 		
-		
+	
 		String passWord=user.getPassWord();
 		
 		boolean flag2=validatePassWord(passWord);
@@ -66,6 +72,18 @@ public class UserServiceImpl implements UserService
 		{
 			throw new UserException("password should contain atleast one uppercase character, lowercase character, one digit, and one special character");
 		}
+		
+		
+      String reenterpassword=user.getReenterPassword();
+       boolean flag5=validateReenterPassword(reenterpassword);
+		if(!flag5)
+		{
+	     throw new UserException("password  not matched");
+		}
+		
+		
+		
+		
 		String phoneNumber=user.getPhoneNum();
 		boolean flag3=validatePhoneNumber(phoneNumber);
 		if(!flag3)
@@ -116,6 +134,8 @@ public class UserServiceImpl implements UserService
 		
 		return userDao.ViewAllUsers();
 	}
+
+	
 	
 
 }
