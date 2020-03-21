@@ -4,7 +4,7 @@ public class User
 {
 private String userName;
 private String passWord;
-private String reenterPassword;
+//private String reenterPassword;
 private String email;
 private String phoneNum;
 private boolean status;
@@ -12,7 +12,7 @@ public User(String userName, String passWord, String email, String phoneNum, boo
 	super();
 	this.userName = userName;
 	this.passWord = passWord;
-	this.reenterPassword = reenterPassword;
+	//this.reenterPassword = reenterPassword;
 	this.email = email;
 	this.phoneNum = phoneNum;
 	this.status = status;
@@ -34,12 +34,12 @@ public String getPassWord() {
 public void setPassWord(String passWord) {
 	this.passWord = passWord;
 }
-public String getReenterPassword() {
-	return reenterPassword;
-}
-public void setReenterPassword(String reenterPassword) {
-	this.reenterPassword = reenterPassword;
-}
+//public String getReenterPassword() {
+//	return reenterPassword;
+//}
+//public void setReenterPassword(String reenterPassword) {
+//	this.reenterPassword = reenterPassword;
+//}
 public String getEmail() {
 	return email;
 }

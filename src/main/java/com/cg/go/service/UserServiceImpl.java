@@ -2,10 +2,12 @@ package com.cg.go.service;
 
 import java.util.List;
 
+
 import com.cg.go.Exception.UserException;
 import com.cg.go.bean.User;
 import com.cg.go.dao.UserDao;
 import com.cg.go.dao.UserDaoMapImpl;
+import com.cg.go.util.Validate;
 
 public class UserServiceImpl implements UserService
 {
@@ -15,13 +17,13 @@ public class UserServiceImpl implements UserService
 		userDao = new UserDaoMapImpl();
 	}
 
-	@Override
-	public boolean  validateUserName(String username) {
-	//boolean flag=false;
-	  boolean	flag=username.matches("[a-zA-Z0-9]+");
-	 
-		return flag;
-	}
+//	@Override
+//	public boolean  validateUserName(String userName) {
+//	//boolean flag=false;
+//	  boolean flag=userName.matches("[a-zA-Z0-9]+");
+//	 
+//		return flag;
+//	}
 
 	@Override  
 	public boolean validatePassWord(String passWord) {
@@ -32,13 +34,13 @@ public class UserServiceImpl implements UserService
 		return flag;
 	}
 
-	@Override
-  public boolean validateReenterPassword(String reenterPassword) 
-	{
-     boolean flag=reenterPassword.matches("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,15})");
-		
-		return flag;
-	}	
+	
+//  public boolean validateReenterPassword(String reenterPassword) 
+//	{
+//     boolean flag=reenterPassword.matches("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,15})");
+//		
+//		return flag;
+//	}	
     
 	@Override
 	public boolean validateEMail(String eMail) {
@@ -57,8 +59,8 @@ public class UserServiceImpl implements UserService
 	@Override
 	public void register(User user) throws UserException 
 	{
-		String userName=user.getUserName();
-		boolean flag1=validateUserName(userName);
+		String username=user.getUserName();
+		boolean flag1=Validate.validateUserName(username);
 		if(!flag1)
 		{
 			throw new UserException("User name should contain alphabets and numbers");
@@ -72,17 +74,6 @@ public class UserServiceImpl implements UserService
 		{
 			throw new UserException("password should contain atleast one uppercase character, lowercase character, one digit, and one special character");
 		}
-		
-		
-      String reenterpassword=user.getReenterPassword();
-       boolean flag5=validateReenterPassword(reenterpassword);
-		if(!flag5)
-		{
-	     throw new UserException("password  not matched");
-		}
-		
-		
-		
 		
 		String phoneNumber=user.getPhoneNum();
 		boolean flag3=validatePhoneNumber(phoneNumber);
@@ -99,41 +90,41 @@ public class UserServiceImpl implements UserService
 		userDao.register(user);
 	}
 
-	@Override
-	public boolean  login(String str1, String str2) throws UserException 
-	{ 
-		boolean flag1=validateUserName(str1);
-		if(!flag1)
-		{
-			throw new UserException("User name should contain alphabets and numbers");
-		}
-		
-		boolean flag2=validatePassWord(str2);
-		if(!flag2)
-		{
-			throw new UserException("password should contain atleast one uppercase character, lowercase character, one digit, and one special character");
-		}
-	
-		return userDao.login(str1, str2);
-	}
-
-	@Override
-	public boolean logout(String str) throws UserException
-	{
-		boolean flag1=validateUserName(str);
-		if(!flag1)
-		{
-			throw new UserException("User name should contain alphabets and numbers");
-		}
-
-		return userDao.logout(str);
-	}
-
-	@Override
-	public List<User> ViewAllUsers() throws UserException {
-		
-		return userDao.ViewAllUsers();
-	}
+//	@Override
+//	public boolean  login(String str1, String str2) throws UserException 
+//	{ 
+//		boolean flag1=validateUserName(str1);
+//		if(!flag1)
+//		{
+//			throw new UserException("User name should contain alphabets and numbers");
+//		}
+//		
+//		boolean flag2=validatePassWord(str2);
+//		if(!flag2)
+//		{
+//			throw new UserException("password should contain atleast one uppercase character, lowercase character, one digit, and one special character");
+//		}
+//	
+//		return userDao.login(str1, str2);
+//	}
+//
+//	@Override
+//	public boolean logout(String str) throws UserException
+//	{
+//		boolean flag1=validateUserName(str);
+//		if(!flag1)
+//		{
+//			throw new UserException("User name should contain alphabets and numbers");
+//		}
+//
+//		return userDao.logout(str);
+//	}
+//
+//	@Override
+//	public List<User> ViewAllUsers() throws UserException {
+//		
+//		return userDao.ViewAllUsers();
+//	}
 
 	
 	

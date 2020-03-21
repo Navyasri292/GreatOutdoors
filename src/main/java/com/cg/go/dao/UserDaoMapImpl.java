@@ -24,19 +24,16 @@ public class UserDaoMapImpl implements UserDao
 
 	if(!map.containsKey(user.getUserName()))
 	{
-		if(user.getPassWord()!=user.getReenterPassword())
-			{
-		   	throw new UserException("Password not matched");
-			}
 
 		map.put(user.getUserName(), user);
 		
 	}
 
-	
+	else
+	{
 		throw new UserException(" Id already exists");
 	
-	
+	}
 	}
 	@Override
 	public boolean login(String str1, String str2) throws UserException 
@@ -60,7 +57,7 @@ public class UserDaoMapImpl implements UserDao
 			throw new UserException(" You have not registerd");
 		}
 		
-//			return map.containsKey(str1);
+
 		
      }
 	@Override
